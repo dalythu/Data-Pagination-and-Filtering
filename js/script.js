@@ -43,14 +43,12 @@ function showPage(list, page) {
                   <div class="joined-details">
                      <span class="date">${data[i]["registered"]["date"]}</span>
                   </div>
-               </li>
-               `
+               </li>`
             // insert the above elements
             studentList.insertAdjacentHTML('beforeend', studentItem);
-         };
+      };
      };
 };
-
 
 /*
 Create the `addPagination` function
@@ -67,25 +65,28 @@ function addPagination(list) {
    // loop over the number of pages needed
    for (i=1; i <= numOfPages; i++) {
      // create the elements needed to display the pagination button
-     var button = 
-     `<li>
+     var button = `
+     <li>
         <button type="button">${i}</button>
-     </li>`
+     </li>
+     `
      // insert the above elements
      linkList.insertAdjacentHTML('beforeend', button);
-   };
+   }
    // give the first pagination button a class of "active"
-   linkList.firstElementChild = 'active';
+   linkList.firstElementChild.className = 'active';
    // create an event listener on the `link-list` element
    linkList.addEventListener('click', (e) => {
      // if the click target is a button:
-      if (e.target.tagName === 'button') {
+      if (e.target.tagName === 'BUTTON') {
        // remove the "active" class from the previous button
-         document.querySelector('.active').className = '';
+         document.querySelector('.active').className='';
        // add the active class to the clicked button
          e.target.className = 'active';
        // call the showPage function passing the `list` parameter and page to display as arguments
-         showPage(data, 1);
+         showPage(data, e.target.textContent);
       }
    });
  };
+ showPage(data, 1);
+ addPagination(data);
